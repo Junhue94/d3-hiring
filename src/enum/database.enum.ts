@@ -14,5 +14,13 @@ export const DatabaseEnum = {
         email: "email",
       },
     },
+    teacher_student: {
+      name: "teacher_student",
+      column: {
+        teacherStudentId: "teacher_student_id",
+        teacherId: "teacher_id",
+        studentId: "student_id",
+      },
+    },
   },
 };
