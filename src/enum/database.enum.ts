@@ -12,6 +12,7 @@ export const DatabaseEnum = {
       column: {
         studentId: "student_id",
         email: "email",
+        isSuspended: "is_suspended",
       },
     },
     teacher_student: {

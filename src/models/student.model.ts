@@ -25,4 +25,11 @@ export class Student extends Model {
     allowNull: false,
   })
   email: string;
+
+  @Column({
+    field: DatabaseEnum.table.student.column.isSuspended,
+    type: DataType.BOOLEAN,
+    defaultValue: false,
+  })
+  isSuspended: boolean;
 }

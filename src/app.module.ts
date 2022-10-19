@@ -4,6 +4,7 @@ import * as dotenv from "dotenv";
 
 import { RegisterModule } from "./register/register.module";
 import { CommonStudentsModule } from "./commonstudents/commonStudents.module";
+import { SuspendModule } from "./suspend/suspend.module";
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ const MYSQL_DATABASE = process.env.MYSQL_DATABASE || "";
     }),
     RegisterModule,
     CommonStudentsModule,
+    SuspendModule,
   ],
 })
 export class AppModule {}
