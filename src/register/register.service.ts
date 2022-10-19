@@ -1,4 +1,4 @@
-import { HttpCode, Injectable, Post } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { Sequelize } from "sequelize-typescript";
 import { RegisterTeacherToStudentsDto } from "../dto/register-teacher-to-students.dto";
@@ -21,8 +21,6 @@ export class RegisterService {
     private sequelize: Sequelize,
   ) {}
 
-  @Post()
-  @HttpCode(204)
   async create(
     registerTeacherToStudentsDto: RegisterTeacherToStudentsDto,
   ): Promise<string> {

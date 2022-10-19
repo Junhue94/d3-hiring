@@ -3,6 +3,7 @@ import { SequelizeModule } from "@nestjs/sequelize";
 import * as dotenv from "dotenv";
 
 import { RegisterModule } from "./register/register.module";
+import { CommonStudentsModule } from "./commonstudents/commonStudents.module";
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ const MYSQL_DATABASE = process.env.MYSQL_DATABASE || "";
       synchronize: true,
     }),
     RegisterModule,
+    CommonStudentsModule,
   ],
 })
 export class AppModule {}
