@@ -5,6 +5,7 @@ import * as dotenv from "dotenv";
 import { RegisterModule } from "./register/register.module";
 import { CommonStudentsModule } from "./commonstudents/commonStudents.module";
 import { SuspendModule } from "./suspend/suspend.module";
+import { RetrieveForNotificationsModule } from "./retrieveForNotifications/retrieveForNotifications.module";
 
 dotenv.config();
 
@@ -29,6 +30,7 @@ const MYSQL_DATABASE = process.env.MYSQL_DATABASE || "";
     RegisterModule,
     CommonStudentsModule,
     SuspendModule,
+    RetrieveForNotificationsModule,
   ],
 })
 export class AppModule {}
