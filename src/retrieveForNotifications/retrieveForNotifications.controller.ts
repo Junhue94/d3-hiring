@@ -11,7 +11,7 @@ export class RetrieveForNotificationsController {
 
   @Post()
   @HttpCode(200)
-  update(
+  get(
     @Body() retrieveForNotificationsDto: RetrieveForNotificationsDto,
   ): Promise<RetrieveForNotificationsResultDto> {
     return this.retrieveForNotificationsService.get(
