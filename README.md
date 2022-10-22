@@ -14,3 +14,8 @@
 ### Unit Test
 
 `npm run test`
+
+### Extra Notes
+
+1. Module is tested using `node version v14.19.3` and `npm version 6.14.17`
+2. MySQL version is tested using `Server version: 8.0.31 Homebrew`
