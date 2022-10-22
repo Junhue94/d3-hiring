@@ -33,7 +33,7 @@ export class RegisterService {
         },
         { transaction },
       );
-      const teacherModelJson = teacherModel[0].toJSON();
+      const teacherModelJson = JSON.parse(JSON.stringify(teacherModel[0]));
 
       for (const student of students) {
         const studentModel = await this.studentModel.upsert(
@@ -42,7 +42,7 @@ export class RegisterService {
           },
           { transaction },
         );
-        const studentModelJson = studentModel[0].toJSON();
+        const studentModelJson = JSON.parse(JSON.stringify(studentModel[0]));
 
         await this.teacherStudentModel.upsert(
           {

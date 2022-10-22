@@ -2,7 +2,6 @@
 
 `npm install`
 
-
 ### Setup
 
 1. Create a new copy of `.env.sample` file and name the new file `.env` in the same path
