@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { Student } from "../models/student.model";
 import { SuspendStudentDto } from "../dto/suspend-student.dto";
@@ -10,7 +10,7 @@ export class SuspendService {
     private readonly studentModel: typeof Student,
   ) {}
 
-  async update(suspendStudentDto: SuspendStudentDto): Promise<string> {
+  async update(suspendStudentDto: SuspendStudentDto): Promise<void> {
     try {
       await this.studentModel.update(
         {
@@ -22,9 +22,11 @@ export class SuspendService {
           },
         },
       );
-      return "Success";
     } catch {
-      return "Failed";
+      throw new HttpException(
+        "Error in suspending student",
+        HttpStatus.BAD_REQUEST,
+      );
     }
   }
 }

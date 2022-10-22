@@ -1,26 +1,13 @@
-### Sequelize sample
-
 ### Installation
 
 `npm install`
 
+
+### Setup
+
+1. Create a new copy of `.env.sample` file and name the new file `.env` in the same path
+2. Update the configurations in the newly created `.env` file
+
 ### Running
 
-This example requires docker or a local MySQL installation.  If using a local MySQL database, see `app.module.ts` for credentials, and make sure there are matching credentials in the database and the source code.
-
-#### Docker
-
-There is a `docker-compose.yml` file for starting Docker.
-
-`docker-compose up`
-
-After running the sample, you can stop the Docker container with
-
-`docker-compose down`
-
-### Run the sample
-
-Then, run Nest as usual:
-
 `npm run start`
-

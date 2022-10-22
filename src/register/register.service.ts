@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { Sequelize } from "sequelize-typescript";
 import { RegisterTeacherToStudentsDto } from "../dto/register-teacher-to-students.dto";
@@ -23,7 +23,7 @@ export class RegisterService {
 
   async create(
     registerTeacherToStudentsDto: RegisterTeacherToStudentsDto,
-  ): Promise<string> {
+  ): Promise<void> {
     const transaction = await this.sequelize.transaction();
     const { teacher, students } = registerTeacherToStudentsDto;
     try {
@@ -54,10 +54,12 @@ export class RegisterService {
       }
 
       await transaction.commit();
-      return "Success";
     } catch (error) {
       await transaction.rollback();
-      return "Failed";
+      throw new HttpException(
+        "Error in registering student(s) to teacher",
+        HttpStatus.BAD_REQUEST,
+      );
     }
   }
 }

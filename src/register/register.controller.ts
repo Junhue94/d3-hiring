@@ -10,7 +10,7 @@ export class RegisterController {
   @HttpCode(204)
   create(
     @Body() registerTeacherToStudentsDto: RegisterTeacherToStudentsDto,
-  ): Promise<string> {
+  ): Promise<void> {
     return this.registerService.create(registerTeacherToStudentsDto);
   }
 }

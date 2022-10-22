@@ -8,7 +8,7 @@ export class SuspendController {
 
   @Post()
   @HttpCode(204)
-  update(@Body() suspendStudentDto: SuspendStudentDto): Promise<string> {
+  update(@Body() suspendStudentDto: SuspendStudentDto): Promise<void> {
     return this.suspendService.update(suspendStudentDto);
   }
 }

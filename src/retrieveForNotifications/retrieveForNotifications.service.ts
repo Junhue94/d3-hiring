@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { Op } from "sequelize";
 import { RetrieveForNotificationsDto } from "../dto/retrieve-for-notifications.dto";
@@ -23,36 +23,43 @@ export class RetrieveForNotificationsService {
   async get(
     retrieveForNotificationsDto: RetrieveForNotificationsDto,
   ): Promise<RetrieveForNotificationsResultDto> {
-    const studentEmail = this.extractEmails(
-      retrieveForNotificationsDto.notification,
-    );
+    try {
+      const studentEmail = this.extractEmails(
+        retrieveForNotificationsDto.notification,
+      );
 
-    const result = await this.teacherStudentModel.findAll({
-      include: [
-        {
-          model: Teacher,
-          required: true,
-        },
-        {
-          model: Student,
-          required: true,
-        },
-      ],
-      where: {
-        [Op.and]: {
-          "$student.is_suspended$": false,
-          [Op.or]: {
-            "$teacher.email$": retrieveForNotificationsDto.teacher,
-            "$student.email$": studentEmail,
+      const result = await this.teacherStudentModel.findAll({
+        include: [
+          {
+            model: Teacher,
+            required: true,
+          },
+          {
+            model: Student,
+            required: true,
+          },
+        ],
+        where: {
+          [Op.and]: {
+            "$student.is_suspended$": false,
+            [Op.or]: {
+              "$teacher.email$": retrieveForNotificationsDto.teacher,
+              "$student.email$": studentEmail,
+            },
           },
         },
-      },
-      raw: true,
-    });
+        raw: true,
+      });
 
-    return {
-      recipients: result.map((ele) => ele["student.email"]),
-    };
+      return {
+        recipients: result.map((ele) => ele["student.email"]),
+      };
+    } catch (err) {
+      throw new HttpException(
+        "Error in retrieving list of students",
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 
   extractEmails(notification: string) {

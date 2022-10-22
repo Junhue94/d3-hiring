@@ -12,7 +12,7 @@ dotenv.config();
 const MYSQL_HOST = process.env.MYSQL_HOST || "";
 const MYSQL_PORT = parseInt(process.env.MYSQL_PORT) || 3306;
 const MYSQL_USERNAME = process.env.MYSQL_USERNAME || "";
-const MYSQL_PASSSWORD = process.env.MYSQL_PASSSWORD || "";
+const MYSQL_PASSWORD = process.env.MYSQL_PASSWORD || "";
 const MYSQL_DATABASE = process.env.MYSQL_DATABASE || "";
 
 @Module({
@@ -22,7 +22,7 @@ const MYSQL_DATABASE = process.env.MYSQL_DATABASE || "";
       host: MYSQL_HOST,
       port: MYSQL_PORT,
       username: MYSQL_USERNAME,
-      password: MYSQL_PASSSWORD,
+      password: MYSQL_PASSWORD,
       database: MYSQL_DATABASE,
       autoLoadModels: true,
       synchronize: true,
